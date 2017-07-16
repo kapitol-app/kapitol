@@ -1,4 +1,5 @@
 import React from "react";
+import * as sharedHelpers from "../shared";
 
 export const getPartyStateDistrict = (member) => {
     if (member.party === "republican") {
@@ -6,14 +7,14 @@ export const getPartyStateDistrict = (member) => {
             return (
                 <h3 className="mp-party-district">
                     <div className="republican">R</div>
-                    epublican, {member.state} {member.district} District
+                    epublican, {sharedHelpers.capitalize(member.state)} {member.district} District
                 </h3>
             )
         } else {
             return (
                 <h3 className="mp-party-district">
                     <div className="republican">R</div>
-                    epublican, {member.state}
+                    epublican, {sharedHelpers.capitalize(member.state)}
                 </h3>
             )
         }
@@ -22,14 +23,14 @@ export const getPartyStateDistrict = (member) => {
             return (
                 <h3 className="mp-party-district">
                     <div className="democrat">D</div>
-                    emocrat, {member.state} {member.district} District
+                    emocrat, {sharedHelpers.capitalize(member.state)} {member.district} District
                 </h3>
             )
         } else {
             return (
                 <h3 className="mp-party-district">
                     <div className="democrat">D</div>
-                    emocrat, {member.state}
+                    emocrat, {sharedHelpers.capitalize(member.state)}
                 </h3>
             )
         }
