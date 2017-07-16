@@ -16,7 +16,8 @@ class MemberPage extends Component {
     componentWillMount() {
         const memberData = MemberData.fetchMember(this.props.match.params);
         this.setState({
-            memberData
+            memberData,
+            currentMember: this.props.match.params
         });
     }
 
@@ -25,7 +26,7 @@ class MemberPage extends Component {
     }
 
     render(){
-        console.log('current param is:', this.props.match.params);
+
         const member = this.state.memberData.memberBasics;
         const socialMedia = this.state.memberData.memberBasics.socialMedia;
 
