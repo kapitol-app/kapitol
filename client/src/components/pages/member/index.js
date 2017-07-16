@@ -21,11 +21,11 @@ class MemberPage extends Component {
         });
     }
 
-    componentDidMount(){
+    componentDidMount() {
         document.title = "Members | Kapitol"
     }
 
-    render(){
+    render() {
 
         const member = this.state.memberData.memberBasics;
         const socialMedia = this.state.memberData.memberBasics.socialMedia;
