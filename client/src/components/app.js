@@ -1,8 +1,8 @@
 import React,{ Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Home from './home';
-import Member from './member';
-import Legislation from './legislation';
+import Home from './pages/home';
+import Member from './pages/member';
+import Legislation from './pages/legislation';
 
 
 class App extends Component{

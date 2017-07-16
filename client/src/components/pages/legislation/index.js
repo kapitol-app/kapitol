@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import NavBar from './navbar';
-import FooterComponent from './footer';
+import NavBar from '../../shared/navbar';
+import FooterComponent from '../../shared/footer';
 
 class Legislation extends Component{
 

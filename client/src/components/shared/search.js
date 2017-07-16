@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 import SearchBox from './searchbox';
-import '../stylesheets/css/index.css';
-import '../stylesheets/css/components/App.css'
-import InputSearchService from '../services/api';
+import '../../stylesheets/css/index.css';
+import '../../stylesheets/css/components/App.css'
+import InputSearchService from '../../services/api';
 
 class SearchComponent extends Component{
     constructor(props){

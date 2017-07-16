@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import '../stylesheets/css/index.css';
-import SearchComponent from './search';
-import FooterComponent from './footer';
+import '../../../stylesheets/css/index.css';
+import SearchComponent from '../../shared/search';
+import FooterComponent from '../../shared/footer';
 
-let kapitol_logo = require('../images/kapitol_logo.png');
+let kapitol_logo = require('../../../images/kapitol_logo.png');
 
 
 class Home extends Component{
@@ -16,7 +16,7 @@ class Home extends Component{
         return(
             <div id='fp-container'>
                 <div className="page-mid">
-                    <img src={kapitol_logo} alt=""/>
+                    <img src={kapitol_logo} alt="Kapitol logo"/>
                     <div id="fp-search">
                         <SearchComponent/>
                     </div>
