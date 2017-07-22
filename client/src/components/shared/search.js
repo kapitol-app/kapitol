@@ -6,7 +6,7 @@ import InputSearchService from '../../services/api';
 
 class SearchComponent extends Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
             placeholderText: 'Enter a member name..',
             searchType: 'member',
@@ -59,15 +59,8 @@ class SearchComponent extends Component{
     render(){
         return(
             <div>
-                <input id='search-bar'
-                       onChange={this.updateInputValue}
-                       type="text"
-                       placeholder={this.state.placeholderText}
-                       className="border-light-gray"/>
-                {this.state.inputValue.length === 0 ? '':
-                    <SearchBox searchResults={this.state.searchResults}
-                               value={this.state.inputValue}
-                               searchType={this.state.searchType}/> }
+                <input id='search-bar' onChange={this.updateInputValue} type="text" placeholder={this.state.placeholderText} className="border-light-gray"/>
+                {this.state.inputValue.length === 0 ? '': <SearchBox searchResults={this.state.searchResults} value={this.state.inputValue} searchType={this.state.searchType}/> }
                 <div id="fp-selector" className="select-style">
                     <select onChange={this.setPlaceholder} className="dropdown" name="drop-down">
                         <option value="members">Members</option>
