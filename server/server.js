@@ -6,7 +6,9 @@ import members from './routes/member-route';
 import legislation from './routes/legislation-route';
 import home from './routes/home-route';
 
-let app = express();
+const app = express();
+
+const io = require('socket.io-client');
 
 //Allow all requests from all domains & localhost
 app.all('/*', (req, res, next) => {

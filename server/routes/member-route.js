@@ -1,12 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import config from '../config';
-import House from '../models/House';
-import Senate from '../models/Senate';
+import query from '../utils/queries';
 
 let memberRouter = express.Router();
 
-let query = `
+const selection = `
     firstName
     lastName
     middleName
@@ -26,23 +25,21 @@ mongoose.connect(mongoUri, (error) => {
 })
 
 memberRouter.post('/fetch-member', (req,res) => {
+
     let results;
-    House.find({memberId: req.body.id})
-        .select(query)
-        .exec((err, homeDocs) => {
-        if(err) throw err;
-        results = homeDocs;
-        if(results.length > 0) {
+
+    query.queryHouse({memberId: req.body.id}, selection, (houseDocs) => {
+        results = houseDocs;
+        if (results.length > 0 ) {
             res.json(results);
-        }else{
-            Senate.find({memberId: req.body.id})
-                .select(query)
-                .exec((err, senateDocs) => {
-                    results = senateDocs;
-                    res.json(results);
-                })
+        } else {
+            query.querySenate({memberId: req.body.id}, selection, (senateDocs) => {
+                results = senateDocs;
+                res.json(results);
+            })
         }
     })
-})
+
+});
 
 export default memberRouter
