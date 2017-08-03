@@ -1,40 +1,43 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import config from '../config';
-import House from '../models/House';
-import Senate from '../models/Senate';
-import socketHandler from '../handlers/socketHandler';
+import socketHandler from '../handlers/socket';
+import dbUtils from '../utils/queries';
 
-let homeRouter = express.Router();
+const homeRouter = express.Router();
 
 const mongoUri = `mongodb://${config.db.host}/${config.db.name}`;
 
 mongoose.connect(mongoUri, (error) => {
-    if(error){
+    if (error) {
         return error;
     }
 })
 
 homeRouter.get('/member-list', (req,res) => {
 
+    //SPECIFIC QUERY PARAM FOR QUERY UTILS
+    const selection = `
+        firstName
+        lastName
+        memberId
+        -_id
+    `;
+
     let results;
 
-    House.find({})
-        .select('firstName lastName memberId -_id')
-        .exec((err, houseDocs) => {
-            Senate.find({})
-                .select('firstName lastName memberId -_id')
-                .exec((err, senateDocs) => {
-                    let Docs = houseDocs.concat(senateDocs);
-                    results = Docs;
-                    res.json(results);
-                })
+    dbUtils.queryDatabase('House', null, selection, (houseDocs) => {
+        dbUtils.queryDatabase('Senate', null, selection, (senateDocs) => {
+            results = houseDocs.concat(senateDocs);
+            res.json(results);
         })
+    });
+
 })
 
 homeRouter.get('/emit-test', (req,res) => {
 
-    let socketServer = new socketHandler(process.env.KAPITOL_TINMAN_PORT); //TO BE SET AS WHATEVER SERVER
+    const socketServer = new socketHandler(config.env.TINMAN_PORT); //TO BE SET AS WHATEVER SERVER
 
     socketServer.emitTest({
         firstName: 'Bernard',

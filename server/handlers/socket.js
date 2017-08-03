@@ -1,6 +1,6 @@
 'use strict';
 
-let io = require('socket.io-client');
+const io = require('socket.io-client');
 
 class socketHandler {
 
@@ -15,7 +15,7 @@ class socketHandler {
      */
     emitTest(data) {
 
-        let socket = io.connect(this._socketServer, {reconnect: true}); //connect socket
+        const socket = io.connect(this._socketServer, {reconnect: true}); //connect socket
 
         socket.emit('news', data);
     }
