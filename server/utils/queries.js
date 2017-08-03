@@ -9,26 +9,20 @@ const utils = {};
  * @param selections === SPECIFIC DATA TO BE PASSED BACK (OPTIONAL or NULL)
  * @param cb == CALLBACK WITH RETURNED DATA
  */
-utils.queryHouse = (query, selections, cb) => {
-    House.find(query)
-        .select(selections)
-        .exec((err, houseDocs) => {
-           return cb(houseDocs);
-        })
+utils.queryDatabase = (collection , query, selections, cb) => {
+    if(collection === 'House'){
+        House.find(query)
+            .select(selections)
+            .exec((err, houseDocs) => {
+                return cb(houseDocs);
+            })
+    }else {
+        Senate.find(query)
+            .select(selections)
+            .exec((err,SenateDocs) => {
+                return cb(SenateDocs);
+            })
+    }
 };
-
-/**
- * QUERY FOR GENERAL PURPOSE SENATE COLLECTION QUERYING
- * @param query=== ANY AVAILABLE QUERY NAME FROM DB (OPTIONAL or NULL)
- * @param selections === SPECIFIC DATA TO BE PASSED BACK (OPTIONAL or NULL)
- * @param cb == CALLBACK WITH RETURNED DATA
- */
-utils.querySenate = (query, selections, cb) => {
-    Senate.find(query)
-        .select(selections)
-        .exec((err, senateDocs) => {
-            return cb(senateDocs);
-        });
-}
 
 export default utils;

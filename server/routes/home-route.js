@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import config from '../config';
 import socketHandler from '../handlers/socket';
-import query from '../utils/queries';
+import dbUtils from '../utils/queries';
 
 const homeRouter = express.Router();
 
@@ -26,11 +26,11 @@ homeRouter.get('/member-list', (req,res) => {
 
     let results;
 
-    query.queryHouse(null, selection, (houseDocs) => {
-        query.querySenate(null, null , (senateDocs) => {
+    dbUtils.queryDatabase('House', null, selection, (houseDocs) => {
+        dbUtils.queryDatabase('Senate', null, selection, (senateDocs) => {
             results = houseDocs.concat(senateDocs);
             res.json(results);
-        }))
+        })
     });
 
 })

@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import config from '../config';
-import query from '../utils/queries';
+import dbUtils from '../utils/queries';
 
 let memberRouter = express.Router();
 
@@ -28,17 +28,18 @@ memberRouter.post('/fetch-member', (req,res) => {
 
     let results;
 
-    query.queryHouse({memberId: req.body.id}, selection, (houseDocs) => {
+    dbUtils.queryDatabase('House', {memberId : req.body.id}, selection, (houseDocs) => {
         results = houseDocs;
-        if (results.length > 0 ) {
+        if (results.length > 0) {
             res.json(results);
         } else {
-            query.querySenate({memberId: req.body.id}, selection, (senateDocs) => {
+            dbUtils.queryDatabase('Senate', {memberId: req.body.id}, selection, (senateDocs) => {
                 results = senateDocs;
                 res.json(results);
-            })
+            });
         }
-    })
+    });
+
 
 });
 
