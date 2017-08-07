@@ -19,7 +19,6 @@ class MemberPage extends Component {
   }
 
   render() {
-      let member, socialMedia;
       {
           console.log(this.props.member);
       }
@@ -39,24 +38,11 @@ class MemberPage extends Component {
               </div>
           )
       } else {
-          member = this.props.member;
-          socialMedia = this.props.member.socialMedia;
           return (
               <div className="mp-container">
                   <NavBar/>
                   <MemberDetails
-                      /*
-                      picture={member.picture}
-                      name={sharedHelpers.capitalize(member.name)}
-                      partyStateDistrict={memberHelpers.getPartyStateDistrict(member)}
-                      fbLink={socialMedia.facebook.link}
-                      fbUsername={socialMedia.facebook.username}
-                      twitterLink={socialMedia.twitter.link}
-                      twitterUsername={socialMedia.twitter.username}
-                      instagramLink={socialMedia.instagram.link}
-                      instagramUsername={socialMedia.instagram.username}
-                      bio={member.bio}
-                      */
+                      memberInfo={this.props.member}
                   />
                   <div className="mp-table">
                       member table data

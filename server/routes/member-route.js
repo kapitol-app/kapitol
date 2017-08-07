@@ -6,6 +6,7 @@ import dbUtils from '../utils/queries';
 let memberRouter = express.Router();
 
 const selection = `
+    memberId
     firstName
     lastName
     middleName
@@ -14,6 +15,10 @@ const selection = `
     youtubeAccount
     currentParty
     url
+    roles.state
+    roles.district
+    roles.title
+    current_party
 `;
 
 const mongoUri = `mongodb://${config.db.host}/${config.db.name}`;
