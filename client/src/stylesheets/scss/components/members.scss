@@ -2,6 +2,8 @@ $gray: gray;
 $darkgray: #4d4d4d;
 $kapitolRed: #E73347;
 $kapitolBlue: #007DBC;
+$tableBorderColor: #979797;
+$tableColor1: #888888;
 
 .democrat {
   padding: 5px 12px;
@@ -140,8 +142,7 @@ $kapitolBlue: #007DBC;
 }
 
 .mp-issues {
-  border: 1px solid lightgray;
-  width: 80%;
+  width: 90%;
 }
 
 .mp-party-district {
@@ -155,8 +156,75 @@ $kapitolBlue: #007DBC;
   }
 }
 
+.s-table-width {
+  width: 200px;
+}
+
+.right-border{
+  border-right: 2px solid $tableBorderColor;
+}
+
 .mp-table {
-  border: 1px solid lightgray;
-  width: 80%;
+  width: 90%;
+  table{
+    width: 100%;
+    position: relative;
+    #header{
+      #keyword {
+        text-align: left;
+        padding: 0;
+        width: 230px;
+      }
+      height: 60px;
+      border-bottom: 2px solid $tableBorderColor;
+      position: relative;
+      .align{
+        text-align: center;
+        padding: 0;
+        width: 175px;
+        position: relative;
+        top: 25px;
+      }
+      .right-border{
+        border-right: 2px solid $tableBorderColor;
+      }
+    }
+    .table-row{
+      border-bottom: 2px solid $tableBorderColor;
+    }
+    tr {
+      th {
+        font-size: 20px;
+        font-weight: 500;
+        padding: 10px;
+        .table-description{
+          color: $tableColor1;
+          display: block;
+          font-size: 14px;
+          width: 150px;
+        }
+      }
+      .table-data{
+        .percent{
+          font-size:18px;
+        }
+        text-align: center;
+        font-size: 25px;
+      }
+      td {
+        .keyword-icon{
+          img{
+            width: 25px;
+            margin-right: 15px;
+            position: relative;
+            top: -2px;
+          }
+        }
+        padding: 10px 0;
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
 }
 

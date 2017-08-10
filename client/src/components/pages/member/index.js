@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import { connect } from 'react-redux';
 import NavBar from "../../shared/navbar";
 import MemberDetails from "./member-details";
+import {Chart, Bar} from 'react-chartjs-2';
+import MemberTable from './member-table';
 import FooterComponent from "../../shared/footer";
 import * as sharedHelpers from "../../../helpers/shared";
 import * as memberHelpers from "../../../helpers/member";
@@ -12,6 +14,8 @@ class MemberPage extends Component {
 
   componentWillMount() {
       this.props.dispatch(getRequests.fetchMember(this.props.match.params.id));
+      Chart.defaults.global.legend.display = false;
+      Chart.defaults.global.animationSteps = 160;
   }
 
   componentDidMount() {
@@ -19,10 +23,7 @@ class MemberPage extends Component {
   }
 
   render() {
-      {
-          console.log(this.props.member);
-      }
-
+      let colors = sharedHelpers.sortColor([.8, -.8, .3, .9, -.9]);
       if (!this.props.member) {
           return (
               <div className="loading">
@@ -45,12 +46,22 @@ class MemberPage extends Component {
                       memberInfo={this.props.member}
                   />
                   <div className="mp-table">
-                      member table data
+                      <MemberTable/>
                   </div>
                   <div className="mp-issues">
-                      member stance on issues
+                      <Bar data={{
+                          labels:['Gun Control', 'Birth Control', 'HealthCare', 'Gun Rights', 'Immigration'],
+                          datasets:[
+                              {
+                                  label: 'Keywords',
+                                  data:[.8, -.8, .3, .9, -.9],
+                                  backgroundColor: colors
+                              }]
+                            }}
+                           width={100}
+                           height={45}
+                      />
                   </div>
-                  <FooterComponent/>
               </div>
           );
       }
