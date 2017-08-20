@@ -1,6 +1,9 @@
 .body {
   font-family: Lato, sans-serif; }
 
+.full-width {
+  width: 90% !important; }
+
 .list-no-styles li {
   text-decoration: none; }
 
@@ -99,6 +102,7 @@ select.dropdown {
     -ms-transition: .1s ease-in-out;
     -o-transition: .1s ease-in-out; }
     .loading .loading-screen .loading-icon {
+      text-align: center;
       margin-top: 5px; }
       .loading .loading-screen .loading-icon .flag-star {
         font-size: 20px;

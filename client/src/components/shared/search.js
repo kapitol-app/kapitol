@@ -2,17 +2,29 @@ import React,{Component} from 'react';
 import SearchBox from './searchbox';
 import '../../stylesheets/css/index.css';
 import '../../stylesheets/css/components/App.css'
-import { connect } from 'react-redux';
 
 
 class SearchComponent extends Component{
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             placeholderText: 'Enter a member name..',
             searchType: 'members',
-            inputValue: ''
-        }
+            inputValue: '',
+            keywordList: [{
+                keyword: 'Gun control',
+                icon: 'gun-control-icon.png'
+            },{
+                keyword: 'Birth control',
+                icon: 'birth-control-icon.png'
+            },{
+                keyword: 'A.C.A',
+                icon: 'aca-icon.png'
+            },{
+                keyword: 'Gun rights',
+                icon: 'gun-rights-icon.png'
+            }]
+        };
         this.setPlaceholder = this.setPlaceholder.bind(this);
         this.updateInputValue = this.updateInputValue.bind(this);
     }
@@ -53,13 +65,9 @@ class SearchComponent extends Component{
         let target = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
         this.setState({
             inputValue: target
-        })
-        console.log(target);
+        });
     }
 
-    componentDidMount(){
-        //..
-    }
 
     render(){
         return(
@@ -67,9 +75,12 @@ class SearchComponent extends Component{
                 <input id='search-bar' onChange={this.updateInputValue} type="text" placeholder={this.state.placeholderText} className="border-light-gray"/>
                 {this.state.inputValue.length === 0 ? '':
                     <SearchBox
-                    searchResults={ this.state.searchType === 'members' ? this.props.memberList : this.props.keywordList}
+                    searchResults={ this.state.searchType === 'members' ? this.props.memberList : this.state.keywordList}
                     value={this.state.inputValue}
-                    searchType={this.state.searchType}/> }
+                    searchType={this.state.searchType}
+                    updateMember = {this.props.action}
+                    />
+                }
                 <div id="fp-selector" className="select-style">
                     <select onChange={this.setPlaceholder} className="dropdown" name="drop-down">
                         <option value="members">Members</option>
@@ -81,9 +92,4 @@ class SearchComponent extends Component{
     }
 }
 
-const mapStateToProps = state => ({
-    memberList: state.home.memberListReceived,
-    keywordList: state.home.keywordListReceived
-});
-
-export default connect (mapStateToProps)(SearchComponent);
+export default SearchComponent;

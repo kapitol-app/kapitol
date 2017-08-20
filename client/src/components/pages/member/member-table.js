@@ -32,7 +32,13 @@ const MemberTable = props => {
                 </th>
             </tr>
             <tr className="table-row">
-                <td><span className="keyword-icon"><img src={gc_icon} alt=""/></span>Gun Control</td>
+                <td id="gun-control">
+                    <span className="keyword-icon"><img src={gc_icon} alt=""/></span>Gun Control
+                    <div className="arrow_box">
+                        <p className="box-title">Gun Control</p>
+                        <p className="box-desc">Gun Rights include the right to keep and bear arms, to use firearms in self-defense, and to produce and sell firearms and ammunition. </p>
+                    </div>
+                </td>
                 <td className="table-data">21<span className="percent">%</span></td>
                 <td className="right-border table-data">96<span className="percent">%</span></td>
                 <td className="table-data">21<span className="percent">%</span></td>
@@ -40,7 +46,13 @@ const MemberTable = props => {
                 <td className="table-data">85<span className="percent">%</span></td>
             </tr>
             <tr className="table-row">
-                <td><span className="keyword-icon"><img src={bc_icon} alt=""/></span>Birth Control</td>
+                <td id="birth-control">
+                    <span className="keyword-icon"><img src={bc_icon} alt=""/></span>Birth Control
+                    <div className="arrow_box">
+                        <p className="box-title">Birth Control</p>
+                        <p className="box-desc">Gun Rights include the right to keep and bear arms, to use firearms in self-defense, and to produce and sell firearms and ammunition. </p>
+                    </div>
+                </td>
                 <td className="table-data">88<span className="percent">%</span></td>
                 <td className="right-border table-data">10<span className="percent">%</span></td>
                 <td className="table-data">88<span className="percent">%</span></td>
@@ -48,7 +60,13 @@ const MemberTable = props => {
                 <td className="table-data">95<span className="percent">%</span></td>
             </tr>
             <tr className="table-row">
-                <td><span className="keyword-icon"><img src={gr_icon} alt=""/></span>Gun Rights</td>
+                <td id="gun-rights">
+                    <span className="keyword-icon"><img src={gr_icon} alt=""/></span>Gun Rights
+                    <div className="arrow_box">
+                        <p className="box-title">Gun Rights</p>
+                        <p className="box-desc">Gun Rights include the right to keep and bear arms, to use firearms in self-defense, and to produce and sell firearms and ammunition. </p>
+                    </div>
+                </td>
                 <td className="table-data">10<span className="percent">%</span></td>
                 <td className="right-border table-data">85<span className="percent">%</span></td>
                 <td className="table-data">10<span className="percent">%</span></td>
@@ -56,7 +74,13 @@ const MemberTable = props => {
                 <td className="table-data">23<span className="percent">%</span></td>
             </tr>
             <tr className="table-row">
-                <td><span className="keyword-icon"><img src={aca_icon} alt=""/></span>Health Care</td>
+                <td id="health-care">
+                    <span className="keyword-icon"><img src={aca_icon} alt=""/></span>Health Care
+                    <div className="arrow_box">
+                        <p className="box-title">Health Care</p>
+                        <p className="box-desc">Gun Rights include the right to keep and bear arms, to use firearms in self-defense, and to produce and sell firearms and ammunition. </p>
+                    </div>
+                </td>
                 <td className="table-data">21%</td>
                 <td className="right-border table-data">96%</td>
                 <td className="table-data">21%</td>

@@ -1,22 +1,37 @@
 import React, {Component} from "react";
-import { connect } from 'react-redux';
 import NavBar from "../../shared/navbar";
 import MemberDetails from "./member-details";
 import {Chart, Bar} from 'react-chartjs-2';
 import MemberTable from './member-table';
-import FooterComponent from "../../shared/footer";
+import {fetchMember} from '../../../services/services';
 import * as sharedHelpers from "../../../helpers/shared";
-import * as memberHelpers from "../../../helpers/member";
-import * as getRequests from '../../../actions/getRequests';
 import "../../../stylesheets/css/index.css";
 
 class MemberPage extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            member: []
+        }
+    }
+
   componentWillMount() {
-      this.props.dispatch(getRequests.fetchMember(this.props.match.params.id));
+      fetchMember(this.props.match.params.id).then(data =>{
+         this.setState({
+             member: data
+         })
+      });
       Chart.defaults.global.legend.display = false;
       Chart.defaults.global.animationSteps = 160;
   }
+
+  updateMemberHandler = (data) => {
+        this.setState({
+            member: data
+        });
+  };
+
 
   componentDidMount() {
       document.title = "Members | Kapitol"
@@ -24,7 +39,7 @@ class MemberPage extends Component {
 
   render() {
       let colors = sharedHelpers.sortColor([.8, -.8, .3, .9, -.9]);
-      if (!this.props.member) {
+      if (!this.state.member) {
           return (
               <div className="loading">
                   <div className="page-mid loading-screen">
@@ -41,10 +56,8 @@ class MemberPage extends Component {
       } else {
           return (
               <div className="mp-container">
-                  <NavBar/>
-                  <MemberDetails
-                      memberInfo={this.props.member}
-                  />
+                  <NavBar action={this.updateMemberHandler}/>
+                  <MemberDetails memberInfo={this.state.member}/>
                   <div className="mp-table">
                       <MemberTable/>
                   </div>
@@ -68,8 +81,4 @@ class MemberPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  member: state.member.currentMember
-});
-
-export default connect(mapStateToProps)(MemberPage);
+export default MemberPage;
