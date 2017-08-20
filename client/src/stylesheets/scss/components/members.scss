@@ -191,6 +191,38 @@ $tableColor1: #888888;
     }
     .table-row{
       border-bottom: 2px solid $tableBorderColor;
+      #gun-control{
+        cursor: pointer;
+        &:hover{
+          .arrow_box{
+            display: block !important;
+          }
+        }
+      }
+      #birth-control{
+        cursor: pointer;
+        &:hover{
+          .arrow_box{
+            display: block !important;
+          }
+        }
+      }
+      #gun-rights{
+        cursor: pointer;
+        &:hover{
+          .arrow_box{
+            display: block !important;
+          }
+        }
+      }
+      #health-care{
+        cursor: pointer;
+        &:hover{
+          .arrow_box{
+            display: block !important;
+          }
+        }
+      }
     }
     tr {
       th {
@@ -212,6 +244,7 @@ $tableColor1: #888888;
         font-size: 25px;
       }
       td {
+        position: relative;
         .keyword-icon{
           img{
             width: 25px;

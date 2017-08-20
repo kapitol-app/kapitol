@@ -140,6 +140,22 @@
         border-right: 2px solid #979797; }
     .mp-table table .table-row {
       border-bottom: 2px solid #979797; }
+      .mp-table table .table-row #gun-control {
+        cursor: pointer; }
+        .mp-table table .table-row #gun-control:hover .arrow_box {
+          display: block !important; }
+      .mp-table table .table-row #birth-control {
+        cursor: pointer; }
+        .mp-table table .table-row #birth-control:hover .arrow_box {
+          display: block !important; }
+      .mp-table table .table-row #gun-rights {
+        cursor: pointer; }
+        .mp-table table .table-row #gun-rights:hover .arrow_box {
+          display: block !important; }
+      .mp-table table .table-row #health-care {
+        cursor: pointer; }
+        .mp-table table .table-row #health-care:hover .arrow_box {
+          display: block !important; }
     .mp-table table tr th {
       font-size: 20px;
       font-weight: 500;
@@ -155,6 +171,7 @@
       .mp-table table tr .table-data .percent {
         font-size: 18px; }
     .mp-table table tr td {
+      position: relative;
       padding: 10px 0;
       font-size: 18px;
       font-weight: 400; }

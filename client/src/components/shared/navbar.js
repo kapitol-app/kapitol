@@ -1,16 +1,25 @@
 import React, {Component} from 'react';
 import SearchComponent from './search';
 import {Link} from 'react-router-dom';
-import { connect } from 'react-redux';
-import { fetchList } from '../../actions/getRequests';
+import { fetchList } from '../../services/services'
 
 
 import kapitol_logo from '../../images/kapitol_logo.png';
 
 class NavBar extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            memberList: []
+        }
+    }
 
-    componentDidMount(){
-        this.props.dispatch(fetchList());
+    componentWillMount(){
+        fetchList().then(memberList => {
+            this.setState({
+                memberList: memberList.data
+            })
+        })
     }
 
     render(){
@@ -18,18 +27,14 @@ class NavBar extends Component{
             <div className="navigation-bar">
                 <Link to="/"><img src={kapitol_logo} alt="kapitol_logo"/></Link>
                 <div className="nav-search-container">
-                    <SearchComponent/>
+                    <SearchComponent action={this.props.action} memberList = {this.state.memberList} />
                 </div>
             </div>
         )
     }
 };
 
-const mapStateToProps = state => ({
-    memberList: state.home.memberListReceived,
-    keywordList: state.home.keywordListReceived
-});
+export default NavBar;
 
-export default connect (mapStateToProps)(NavBar);
 
 

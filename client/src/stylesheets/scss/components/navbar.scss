@@ -28,6 +28,10 @@
       top: 70px;
       #search-options{
         li{
+          &:hover{
+            background: $kapitolLightGray;
+            cursor: pointer;
+          }
           padding: 10px;
           padding-right: 3px;
           .keyword{
@@ -36,12 +40,15 @@
           }
           .memberPhoto{
             margin: 10px 10px 5px 10px;
+            width: 50px;
           }
           span{
             font-size: 14px;
+            margin: 0 3px;
           }
           .keyword{
             padding: 20px;
+            margin: 0 2px;
           }
         }
       }

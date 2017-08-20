@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-
+import {fetchMember} from '../../services/services';
 class SearchBox extends Component{
+
     render(){
         return(
             <div id="search-box">
@@ -10,17 +11,32 @@ class SearchBox extends Component{
                         if(word.firstName.indexOf(this.props.value) > -1 || word.lastName.indexOf(this.props.value) > -1 ){
                             return word;
                         }else{
-                            return ''
+                            return '';
                         }
                     }).map(word =>{
-                        return (
-                            <Link key={word.memberId} to={`/${this.props.searchType}/${word.memberId}`}>
-                                <li>
+                        if(window.location.href.indexOf('member') > -1){
+                            return (
+                                <li key={word.memberId} onClick={() => {
+                                    fetchMember(word.memberId).then(data => {
+                                        this.props.updateMember(data);
+                                    })
+                                }} >
                                     <img className='memberPhoto' src={'https://theunitedstates.io/images/congress/225x275/' + word.memberId + '.jpg'}  alt=""/>
                                     <span>{word.firstName}</span>
                                     <span>{word.lastName} </span>
                                 </li>
-                            </Link>)
+                            )
+                        }else{
+                            return (
+                                <Link key={word.memberId} to={`/${this.props.searchType}/${word.memberId}`}>
+                                    <li>
+                                        <img className='memberPhoto' src={'https://theunitedstates.io/images/congress/225x275/' + word.memberId + '.jpg'}  alt=""/>
+                                        <span>{word.firstName}</span>
+                                        <span>{word.lastName} </span>
+                                    </li>
+                                </Link>
+                            )
+                        }
                     }) : this.props.searchResults.filter(word => {
                             if(word.keyword.includes(this.props.value)){
                                 return word;
@@ -46,3 +62,13 @@ class SearchBox extends Component{
 }
 
 export default SearchBox;
+
+// const mapStateToProps = state => ({
+//     member: state.member.currentMember
+// });
+//
+// const mapDispatchToProps = dispatch => {
+//     return bindActionCreators({ selectMember: selectMember }, dispatch);
+// };
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

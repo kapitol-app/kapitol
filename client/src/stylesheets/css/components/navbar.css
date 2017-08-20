@@ -1,6 +1,9 @@
 .body {
   font-family: Lato, sans-serif; }
 
+.full-width {
+  width: 90% !important; }
+
 .list-no-styles li {
   text-decoration: none; }
 
@@ -91,15 +94,21 @@ select.dropdown {
       .navigation-bar .nav-search-container #search-box #search-options li {
         padding: 10px;
         padding-right: 3px; }
+        .navigation-bar .nav-search-container #search-box #search-options li:hover {
+          background: #DFE0E2;
+          cursor: pointer; }
         .navigation-bar .nav-search-container #search-box #search-options li .keyword {
           padding: 5px !important;
           font-size: 15px; }
         .navigation-bar .nav-search-container #search-box #search-options li .memberPhoto {
-          margin: 10px 10px 5px 10px; }
+          margin: 10px 10px 5px 10px;
+          width: 50px; }
         .navigation-bar .nav-search-container #search-box #search-options li span {
-          font-size: 14px; }
+          font-size: 14px;
+          margin: 0 3px; }
         .navigation-bar .nav-search-container #search-box #search-options li .keyword {
-          padding: 20px; }
+          padding: 20px;
+          margin: 0 2px; }
     .navigation-bar .nav-search-container #fp-selector {
       display: inline-block;
       height: 50px; }
