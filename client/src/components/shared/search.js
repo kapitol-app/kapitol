@@ -25,7 +25,6 @@ class SearchComponent extends Component{
                 icon: 'gun-rights-icon.png'
             }]
         };
-        this.setPlaceholder = this.setPlaceholder.bind(this);
         this.updateInputValue = this.updateInputValue.bind(this);
     }
 
@@ -34,7 +33,7 @@ class SearchComponent extends Component{
      * CHECKS TARGET VALUE AND SETS PLACEHOLDER AND SEARCH TYPE STATE
      */
 
-    setPlaceholder(event){
+    setPlaceholder = event =>{
         this.setState({
             inputValue: []
         });
@@ -50,9 +49,6 @@ class SearchComponent extends Component{
                 searchType: target
             })
         }
-
-        //CLEAR INPUT BAR
-        document.getElementById('search-bar').value = '';
     }
 
     /**
@@ -60,7 +56,7 @@ class SearchComponent extends Component{
      * CHECKS TARGET VALUE AND UPDATES INPUT VALUE STATE
      * USE THIS FUNCTION FOR ALL API VALUE CALLS
      */
-    updateInputValue(event){
+    updateInputValue = event => {
         //KEEP VARIABLE OF INPUT VALUE
         let target = event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1);
         this.setState({
@@ -78,7 +74,7 @@ class SearchComponent extends Component{
                     searchResults={ this.state.searchType === 'members' ? this.props.memberList : this.state.keywordList}
                     value={this.state.inputValue}
                     searchType={this.state.searchType}
-                    updateMember = {this.props.action}
+                    updateMemberHandler = {this.props.action}
                     />
                 }
                 <div id="fp-selector" className="select-style">

@@ -33,6 +33,12 @@
   }
 }
 
+@media screen and (max-width:700px){
+  .mp-container{
+    width: 1200px;
+  }
+}
+
 @media screen and (max-width: 500px){
   #fp-container{
     img{
