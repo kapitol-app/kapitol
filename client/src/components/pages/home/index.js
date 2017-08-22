@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import '../../../stylesheets/css/index.css';
 import SearchComponent from '../../shared/search';
+import LoadingComponent from '../../shared/loading-icon';
 import FooterComponent from '../../shared/footer';
 import { fetchList } from '../../../services/services';
 
@@ -33,19 +34,9 @@ class Home extends Component{
         return(
             <div id='fp-container'>
                 {
-                    this.state.memberList ?
-                        <div></div> :
-                        <div className="loading">
-                            <div className="page-mid loading-screen">
-                                <div className="page-mid loading-icon">
-                                    <span className="flag-star">&#9733;</span>
-                                    <span className="flag-star">&#9733;</span>
-                                    <span className="flag-star">&#9733;</span>
-                                    <div className="flag-bar">&nbsp;</div>
-                                    <div className="flag-bar">&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
+                    this.state.memberList.length > 1 ?
+                        '' :
+                        <LoadingComponent/>
                 }
                 <div className="page-mid">
                     <img src={kapitol_logo} alt="Kapitol logo"/>
@@ -59,12 +50,5 @@ class Home extends Component{
         )
     }
 }
-//
-// const mapStateToProps = state => ({
-//     memberList: state.home.memberListReceived,
-//     keywordList: state.home.keywordListReceived
-// });
-
-// export default connect (mapStateToProps)(Home);
 
 export default Home;

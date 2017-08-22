@@ -9,7 +9,7 @@ class SearchBox extends Component{
                 <ul id='search-options' className="no-padding no-margin text-left list-no-styles">
                     {this.props.searchType === 'members' ? this.props.searchResults.filter(word => {
                         if(word.firstName.indexOf(this.props.value) > -1 || word.lastName.indexOf(this.props.value) > -1 ){
-                            return word;
+                            return word.firstName + ' ' + word.lastName;
                         }else{
                             return '';
                         }
@@ -18,7 +18,7 @@ class SearchBox extends Component{
                             return (
                                 <li key={word.memberId} onClick={() => {
                                     fetchMember(word.memberId).then(data => {
-                                        this.props.updateMember(data);
+                                        this.props.updateMemberHandler(data);
                                     })
                                 }} >
                                     <img className='memberPhoto' src={'https://theunitedstates.io/images/congress/225x275/' + word.memberId + '.jpg'}  alt=""/>
@@ -63,12 +63,3 @@ class SearchBox extends Component{
 
 export default SearchBox;
 
-// const mapStateToProps = state => ({
-//     member: state.member.currentMember
-// });
-//
-// const mapDispatchToProps = dispatch => {
-//     return bindActionCreators({ selectMember: selectMember }, dispatch);
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

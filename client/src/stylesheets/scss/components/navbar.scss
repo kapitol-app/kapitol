@@ -60,36 +60,3 @@
   }
 }
 
-@media screen and (max-width:700px){
-  .navigation-bar{
-    overflow-x: hidden;
-    img{
-      width: 150px;
-      display: block;
-      margin: 20px auto;
-      padding: 0;
-    }
-    .nav-search-container{
-      float: none;
-      #search-bar{
-        display: block;
-        margin: 10px auto;
-        width: 200px;
-      }
-      #search-box{
-        position: relative;
-        top: -11px;
-        width: 200px !important;
-      }
-      #fp-selector{
-        display: block;
-        margin: 10px auto;
-        select{
-          display: block;
-          margin: 20px auto 30px;
-        }
-      }
-    }
-  }
-}
-
