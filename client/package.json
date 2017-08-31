@@ -22,7 +22,7 @@
     "react-scripts": "1.0.8"
   },
   "scripts": {
-    "sass": "sass --watch src/stylesheets/scss/index.scss:src/stylesheets/css/index.css",
+    "sass": "sass --watch src/stylesheets/scss/index.scss:src/stylesheets/css/index.css --style compressed",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

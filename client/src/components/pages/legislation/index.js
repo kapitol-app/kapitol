@@ -2,105 +2,62 @@ import React, {Component} from 'react';
 import NavBar from '../../shared/navbar';
 import FooterComponent from '../../shared/footer';
 import legislation from '../../../files/legislation.json';
+import {capitalize_words} from '../../../helpers/shared/index';
 
 class Legislation extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {
+            session: '115th',
+            keyword: '',
+            k_definition: '',
+            keyword_icon: '',
+        }
+    }
+
+    componentWillMount(){
+        this.setState({
+            keyword: this.props.match.params.keyword.toLowerCase()
+        });
+    }
+
     componentDidMount(){
-        document.title = "Legislation | Kapitol"
+        document.title = "Legislation | Kapitol";
+
+        switch (this.state.keyword) {
+            case 'gun control':
+                this.setState({
+                   k_definition: 'gun control definition',
+                    keyword_icon: 'gun-control-icon.png'
+                });
+                break;
+            case 'gun rights':
+                this.setState({
+                    k_definition: 'Gun Rights include the right to keep and bear arms, to use firearms in self-defense, and to produce and sell firearms and ammunition. ',
+                    keyword_icon: 'gun-rights-icon.png'
+                });
+                break;
+            case 'birth control':
+                this.setState({
+                    k_definition: 'birth control definition',
+                    keyword_icon: 'birth-control-icon.png'
+                })
+        }
     }
 
     render(){
-        const topic = this.props.match.params.keyword;
-        const recentBills = legislation[0][topic]["recent_bills"];
-        const recentBillsKeys = Object.keys(recentBills[0]);
-
-        const RecentBillList = (props) => {
-            const currentBillKey =  recentBillsKeys[0];
-            return (
-                <tr>
-                    <td>{currentBillKey}</td>
-                    <td>{props.recentBill[currentBillKey].stage}</td>
-                    <td>{props.recentBill[currentBillKey].sponsorship_party}</td>
-                    <td>{props.recentBill[currentBillKey].results.pass}</td>
-                </tr>
-            );
-        };
-
         return(
             <div>
-                <div>
-                    <NavBar/>
-                    <h1>115th Congressional Voting</h1>
-                    <h1>{topic}</h1>
-                    <p>{legislation[0][topic]["description"]}</p>
+                <NavBar/>
+                <div className="legi-header">
+                    <h2>{this.state.session} Congressional Voting</h2>
+                    <img id="keyword-image" src={
+                        !this.state.keyword_icon ? '' : require(`../../../images/${this.state.keyword_icon}`)
+                    } alt={this.state.keyword}/>
+                    <h2>{capitalize_words(this.state.keyword)}</h2>
+                    <h4 id="keyword-definition">{this.state.k_definition}</h4>
                 </div>
-                <div className="custom-table">
-                    <table className="table table-responsive table-condensed">
-                        <thead>
-                        <tr>
-                            <th><h4 className="">Recent Bills</h4>
-                                <h5 className="text-info">
-                                    <small>Recent bills put forth in Congress rela;ng to Gun Rights.<br />Click on the bill name to run it through our prediction algorithms, seen below.
-                                    </small></h5>
-                            </th>
-                            <th><h4>Details</h4>
-                                <h5 className="text-info">
-                                    <small>Bill details, including bill placement in Congress and bill sponsoring party </small>
-                                </h5>
-                            </th>
-                            <th className="wid-200">
-                                <h4>Projection</h4>
-                                <h5 className="text-info">
-                                    <small>Kapitol algorithm predic;on for bill passage </small></h5></th>
-                            <th className="wid-200"><h4>Results</h4>
-                                <h5 className="text-info">
-                                    <small>Bill results updated in real time. Results vary out of 100 or 435 depending on chamber</small>
-                                </h5>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr className="table-bor-line">
-                            <td></td>
-                            <td className="set-border">
-                                <div className="row">
-                                    <div className="col-sm-6"><p className="p-10">Stage</p></div>
-                                    <div className="col-sm-6">
-                                        <p>Sponsoring <br />
-                                            Stage Party</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div className="row">
-                                    <div className="col-sm-6"><p>Pass</p></div>
-                                    <div className="col-sm-6">
-                                        <p>Fail</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div className="row">
-                                    <div className="col-sm-6"><p>Yay</p></div>
-                                    <div className="col-sm-6"><p>Nay</p></div>
-                                </div>
-                            </td>
-                        </tr>
-                        {
-                            recentBills.map((bill,index) => {
-                                return (
-                                    <RecentBillList key={index} billkeys={recentBillsKeys[index]} recentBill={bill}/>
-                                );
-                            })
-                        }
-                        </tbody>
-                    </table>
-                    <div className="text-center m-b-30">
-                        <h3 className="fw-600">Selected Bill:</h3>
-                        <p className="hash-text">H.R 3928 - Domes;c Leasing Expenditures</p>
-                    </div>
-                </div>
-                <FooterComponent />
             </div>
         );
     }

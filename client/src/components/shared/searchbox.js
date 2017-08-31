@@ -45,7 +45,7 @@ class SearchBox extends Component{
                             }
                     }).map(word => {
                         return(
-                            <Link key={word.keyword} to={`/${this.props.searchType}/${word}`}>
+                            <Link key={word.keyword} to={`/${this.props.searchType}/${word.keyword}`}>
                                 <li>
                                     <span className="keyword-icon">
                                         <img src={require('../../images/' + word.icon)} alt="keyword-icon"/>
