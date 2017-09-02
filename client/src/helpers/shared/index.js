@@ -15,6 +15,15 @@ export const sortColor = arr => {
         item < 0 ?
             colors.push('rgba(231, 51, 71, 0.6)') :
             colors.push('rgba(0, 125, 188, 0.6)')
-    })
+    });
     return colors;
 }
+
+export const capitalize_words = str => {
+    let strArray = str.split(' ');
+    let newArray = [];
+    strArray.map(word => {
+        newArray.push(word.charAt(0).toUpperCase() + word.substr(1).toLowerCase());
+    });
+    return newArray.join(' ')
+};
